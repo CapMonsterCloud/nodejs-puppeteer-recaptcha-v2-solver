@@ -1,0 +1,28 @@
+{
+  "name": "nodejs-puppeteer-recaptcha-v2-capmonster",
+  "version": "1.0.0",
+  "description": "Puppeteer reCAPTCHA solver for Node.js: solve Google reCAPTCHA v2 with the official CapMonster Cloud SDK.",
+  "main": "src/recaptcha.js",
+  "scripts": {
+    "start": "node examples/solve-recaptcha-v2.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@zennolab_com/capmonstercloud-client": "^2.9.6",
+    "puppeteer": "^25.0.0"
+  },
+  "keywords": [
+    "puppeteer",
+    "recaptcha",
+    "puppeteer-recaptcha",
+    "recaptcha-v2",
+    "recaptcha-solver",
+    "nodejs",
+    "captcha-solver",
+    "capmonster"
+  ]
+}
