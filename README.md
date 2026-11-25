@@ -20,8 +20,8 @@ Without arguments it uses the public demo page `lessons.zennolab.com`.
 ## Quick start
 
 ```bash
-git clone https://github.com/CapMonsterCloud/nodejs-puppeteer-recaptcha-v2-capmonster.git
-cd nodejs-puppeteer-recaptcha-v2-capmonster
+git clone https://github.com/CapMonsterCloud/nodejs-puppeteer-recaptcha-v2-solver.git
+cd nodejs-puppeteer-recaptcha-v2-solver
 npm install
 
 export CAPMONSTER_API_KEY=your_key            # Windows PowerShell: $env:CAPMONSTER_API_KEY="your_key"
