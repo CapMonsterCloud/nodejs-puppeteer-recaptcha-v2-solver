@@ -1,6 +1,11 @@
-# Puppeteer reCAPTCHA Solver for Node.js (reCAPTCHA v2) with CapMonster Cloud
+# Puppeteer reCAPTCHA v2 Solver for Node.js (CapMonster Cloud)
 
-A small, runnable **Puppeteer reCAPTCHA solver** for **Node.js**: it solves Google reCAPTCHA v2 inside a Puppeteer session with the official CapMonster Cloud SDK (`@zennolab_com/capmonstercloud-client`). Use it when your Node.js Puppeteer scripts meet reCAPTCHA on forms you test or automate.
+[![tests](https://github.com/CapMonsterCloud/nodejs-puppeteer-recaptcha-v2-solver/actions/workflows/test.yml/badge.svg)](https://github.com/CapMonsterCloud/nodejs-puppeteer-recaptcha-v2-solver/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Node.js 22.12+](https://img.shields.io/badge/Node.js-22.12%2B-5FA04E?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Puppeteer](https://img.shields.io/badge/Puppeteer-supported-40B5A4?logo=puppeteer&logoColor=white)](https://pptr.dev/)
+
+A small, runnable **Puppeteer reCAPTCHA v2 solver for Node.js**. It solves Google reCAPTCHA v2 inside a Puppeteer session with the official CapMonster Cloud SDK (`@zennolab_com/capmonstercloud-client`) and the [CapMonster Cloud reCAPTCHA v2 solver](https://capmonster.cloud/en/recaptcha-v2/?utm_source=github&utm_medium=repo-example&utm_campaign=nodejs-puppeteer-recaptcha-v2&utm_content=intro). Use it when your Node.js Puppeteer scripts meet reCAPTCHA on forms you test or automate.
 
 ## What this example does
 
@@ -14,7 +19,7 @@ Without arguments it uses the public demo page `lessons.zennolab.com`.
 ## Requirements
 
 - Node.js 22.12 or newer (required by current Puppeteer)
-- A CapMonster Cloud API key
+- A CapMonster Cloud API key (see [Get an API key](#get-an-api-key))
 - About 200 MB of disk space for the Chrome build that Puppeteer downloads on install
 
 ## Quick start
@@ -42,6 +47,12 @@ npm test
 - **Callback discovery through `___grecaptcha_cfg`.** Sites that call `grecaptcha.render(el, { callback })` have no `data-callback` attribute. `injectToken` walks Google's internal client config, finds the registered callback (a function or a global function name) and calls it with the token. That is what actually unlocks most forms.
 - **Testable page code.** `injectToken` is a plain function: Puppeteer serializes it into the page, and the tests run the same function in a Node `vm` sandbox.
 
+## reCAPTCHA v2 token basics
+
+- The token is a `g-recaptcha-response` string. Write it into the hidden textarea or pass it to the widget callback.
+- reCAPTCHA v2 tokens are single-use and short-lived. Request a new token for every submission and submit right away.
+- Pass the same page URL and sitekey that the browser used, otherwise the token can be rejected on validation.
+
 ## Common errors
 
 | Symptom | Cause and fix |
@@ -53,6 +64,10 @@ npm test
 | `reCAPTCHA sitekey not found on the page` | The widget appears only after an action, or the page uses reCAPTCHA v3/Enterprise. Trigger the widget first or use the matching request class. |
 | Site responds `invalid-input-response` | The token expired (about 2 minutes) or was used twice. Submit immediately after injection. |
 
+## Get an API key
+
+This example needs a CapMonster Cloud account and API key. Register and get the key on the [reCAPTCHA v2 solver page](https://capmonster.cloud/en/recaptcha-v2/?utm_source=github&utm_medium=repo-example&utm_campaign=nodejs-puppeteer-recaptcha-v2&utm_content=cta). There you will also find pricing and the API description.
+
 ## Responsible use
 
 Run this example only against websites you own or are permitted to automate, such as QA of your own forms. Respect each website's terms of service and the law. Do not commit your API key.
@@ -60,4 +75,6 @@ Run this example only against websites you own or are permitted to automate, suc
 ## Links
 
 - Node.js SDK: [CapMonster Cloud Node.js SDK](https://github.com/CapMonsterCloud/capmonster-nodejs-captcha-solver)
-- reCAPTCHA v2 solving with CapMonster Cloud: [capmonster.cloud/en/recaptcha-v2](https://capmonster.cloud/en/recaptcha-v2/?utm_source=github&utm_medium=repo-example&utm_campaign=nodejs-puppeteer-recaptcha-v2)
+- reCAPTCHA v2 solving with CapMonster Cloud: [capmonster.cloud/en/recaptcha-v2](https://capmonster.cloud/en/recaptcha-v2/?utm_source=github&utm_medium=repo-example&utm_campaign=nodejs-puppeteer-recaptcha-v2&utm_content=links)
+
+reCAPTCHA is a trademark of Google LLC. CapMonster Cloud is not affiliated with or endorsed by Google.
